@@ -1,8 +1,8 @@
 extends Container
-# UI to handle reference image editing.
+## UI to handle reference image editing.
 
 var element: ReferenceImage
-var _ignore_spinbox_changes = false
+var _ignore_spinbox_changes := false
 
 
 func _ready():
@@ -14,10 +14,10 @@ func _ready():
 		$Interior/PathHeader/Path3D.text = element.image_path
 
 	if !element.texture:
-		$Interior/PreviewAndOptions/PreviewPanel/Warning.text = "Image Not Found!!!"
+		$Interior/PreviewAndOptions/PreviewPanel/Warning.text = "Image not found!"
 	else:
 		$Interior/PreviewAndOptions/PreviewPanel/Preview.texture = element.texture
-	element.connect("properties_changed", Callable(self, "_update_properties"))
+	element.properties_changed.connect(_update_properties)
 	_update_properties()
 
 
@@ -82,11 +82,11 @@ func _on_Path_pressed() -> void:
 	OS.shell_open($Interior/PathHeader/Path3D.text.get_base_dir())
 
 
-func _on_ApplyFilter_toggled(button_pressed: bool) -> void:
-	element.filter = button_pressed
-	if element.texture:
-		if element.filter:
-			element.texture.flags = Texture2D.FLAG_MIPMAPS | Texture2D.FLAG_FILTER
-		else:
-			element.texture.flags = Texture2D.FLAG_MIPMAPS
-	element.change_properties()
+#func _on_ApplyFilter_toggled(button_pressed: bool) -> void:
+#	element.filter = button_pressed
+#	if element.texture:
+#		if element.filter:
+#			element.texture.flags = Texture2D.FLAG_MIPMAPS | Texture2D.FLAG_FILTER
+#		else:
+#			element.texture.flags = Texture2D.FLAG_MIPMAPS
+#	element.change_properties()
