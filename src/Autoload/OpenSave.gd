@@ -1,14 +1,13 @@
 # gdlint: ignore=max-public-methods
 extends Node
 
-var current_save_paths := []  # Array of strings
+var current_save_paths: PackedStringArray = []
 # Stores a filename of a backup file in user:// until user saves manually
-var backup_save_paths := []  # Array of strings
-var preview_dialog_tscn = preload("res://src/UI/Dialogs/PreviewDialog.tscn")
+var backup_save_paths: PackedStringArray = []
+var preview_dialog_tscn := preload("res://src/UI/Dialogs/PreviewDialog.tscn")
 var preview_dialogs := []  # Array of preview dialogs
-var last_dialog_option: int = 0
-
-@onready var autosave_timer: Timer
+var last_dialog_option := 0
+var autosave_timer: Timer
 
 
 func _ready() -> void:
@@ -573,7 +572,9 @@ func open_image_at_cel(image: Image, layer_index := 0, frame_index := 0) -> void
 	for i in project.frames.size():
 		if i == frame_index:
 			image.convert(Image.FORMAT_RGBA8)
-			var cel: PixelCel = project.frames[i].cels[layer_index]
+			var cel := project.frames[i].cels[layer_index]
+			if not cel is PixelCel:
+				continue
 			project.undo_redo.add_do_property(cel, "image", image)
 			project.undo_redo.add_undo_property(cel, "image", cel.image)
 
