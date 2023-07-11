@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3hkjj3s6pe4x"]
+[gd_scene load_steps=9 format=3 uid="uid://b3hkjj3s6pe4x"]
 
 [ext_resource type="Script" path="res://src/Preferences/PreferencesDialog.gd" id="1"]
 [ext_resource type="Script" path="res://src/Preferences/HandleExtensions.gd" id="2"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://src/Preferences/HandleThemes.gd" id="5"]
 [ext_resource type="PackedScene" path="res://src/UI/Nodes/ValueSliderV2.tscn" id="7"]
 [ext_resource type="Script" path="res://src/UI/Nodes/ValueSlider.gd" id="8"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_8vsfb"]
 
 [node name="PreferencesDialog" type="AcceptDialog"]
 script = ExtResource("1")
@@ -106,6 +108,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 tooltip_text = "System Language"
 mouse_default_cursor_shape = 2
+button_group = SubResource("ButtonGroup_8vsfb")
 text = "System Language"
 
 [node name="Interface" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide"]
