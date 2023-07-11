@@ -81,7 +81,6 @@ func _on_Opacity_value_changed(value):
 func _on_Path_pressed() -> void:
 	OS.shell_open($Interior/PathHeader/Path3D.text.get_base_dir())
 
-
 #func _on_ApplyFilter_toggled(button_pressed: bool) -> void:
 #	element.filter = button_pressed
 #	if element.texture:
