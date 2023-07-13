@@ -172,6 +172,7 @@ text = "Dim interface on dialog popup"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="ThemesHeader" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Interface"]
@@ -314,6 +315,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Adds a smoother transition when zooming in or out"
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="GuideHeader" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Canvas"]
@@ -834,6 +836,7 @@ text = "Animated selection borders"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="BorderColor1Label" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Selection/SelectionOptions"]
@@ -908,6 +911,7 @@ text = "Enable autosave"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="AutosaveIntervalLabel" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Backup/AutosaveContainer"]
@@ -972,6 +976,7 @@ text = "Pause application when it loses focus"
 layout_mode = 2
 tooltip_text = "If this is toggled on, when the application's window loses focus, it gets paused. This helps lower CPU usage when idle. The application gets unpaused when the mouse enters the application's window."
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="Drivers" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide"]
@@ -1110,6 +1115,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Show left mouse pixel indicator or brush on the canvas when drawing"
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="Label2" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Cursors/CursorsContainer"]
@@ -1121,6 +1127,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Show right mouse pixel indicator or brush on the canvas when drawing"
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="Label3" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Cursors/CursorsContainer"]
@@ -1132,6 +1139,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Displays an icon of the selected left tool next to the cursor on the canvas"
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="Label4" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Cursors/CursorsContainer"]
@@ -1143,6 +1151,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Displays an icon of the selected right tool next to the cursor on the canvas"
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="Label5" type="Label" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Cursors/CursorsContainer"]
@@ -1161,6 +1170,7 @@ text = "Use cross cursor for the canvas"
 [node name="CrossCursorCheckbox" type="CheckBox" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide/Cursors/CursorsContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
+button_pressed = true
 text = "On"
 
 [node name="Image" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/ScrollContainer/RightSide"]
