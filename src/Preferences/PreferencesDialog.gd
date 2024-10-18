@@ -9,6 +9,7 @@ var preferences: Array[Preference] = [
 	),
 	Preference.new("ffmpeg_path", "Startup/StartupContainer/FFMPEGPath", "text", ""),
 	Preference.new("shrink", "%ShrinkSlider", "value", 1.0),
+	Preference.new("theme_font_index", "%FontOptionButton", "selected", 1),
 	Preference.new("font_size", "%FontSizeSlider", "value", 16),
 	Preference.new(
 		"dim_on_popup", "Interface/InterfaceOptions/DimCheckBox", "button_pressed", true
@@ -240,6 +241,7 @@ class Preference:
 
 
 func _ready() -> void:
+	Global.font_loaded.connect(_add_fonts)
 	# Replace OK since preference changes are being applied immediately, not after OK confirmation
 	get_ok_button().text = "Close"
 	get_ok_button().size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -291,6 +293,8 @@ func _ready() -> void:
 			button.button_pressed = true
 		language.add_child(button)
 		button.pressed.connect(_on_language_pressed.bind(button.get_index()))
+
+	_add_fonts()
 
 	for pref in preferences:
 		if not right_side.has_node(pref.node_path):
@@ -356,6 +360,14 @@ func _on_Preference_value_changed(value, pref: Preference, button: RestoreDefaul
 	if typeof(value) == TYPE_COLOR:
 		disable = Global.get(prop).is_equal_approx(default_value)
 	disable_restore_default_button(button, disable)
+
+
+## Add fonts to the font option button.
+func _add_fonts() -> void:
+	%FontOptionButton.clear()
+	for font_name in Global.get_available_font_names():
+		%FontOptionButton.add_item(font_name)
+	%FontOptionButton.select(Global.theme_font_index)
 
 
 func preference_update(require_restart := false) -> void:

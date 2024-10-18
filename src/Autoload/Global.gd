@@ -12,6 +12,7 @@ signal project_about_to_switch  ## Emitted before a project is about to be switc
 signal project_switched  ## Emitted whenever you switch to some other project tab.
 signal cel_switched  ## Emitted whenever you select a different cel.
 signal project_data_changed(project: Project)  ## Emitted when project data is modified.
+signal font_loaded  ## Emitted when a new font has been loaded, or an old one gets unloaded.
 
 enum LayerTypes { PIXEL, GROUP, THREE_D }
 enum GridTypes { CARTESIAN, ISOMETRIC, ALL }
@@ -27,7 +28,7 @@ enum FileMenu { NEW, OPEN, OPEN_LAST_PROJECT, RECENT, SAVE, SAVE_AS, EXPORT, EXP
 enum EditMenu { UNDO, REDO, COPY, CUT, PASTE, PASTE_IN_PLACE, DELETE, NEW_BRUSH, PREFERENCES }
 ## Enumeration of items present in the View Menu.
 enum ViewMenu {
-	CENTRE_CANVAS,
+	CENTER_CANVAS,
 	TILE_MODE,
 	TILE_MODE_OFFSETS,
 	GREYSCALE_VIEW,
@@ -210,6 +211,24 @@ var integer_zoom := false:
 
 ## Found in Preferences. The scale of the interface.
 var shrink := 1.0
+var theme_font := loaded_fonts[theme_font_index]:
+	set(value):
+		theme_font = value
+		if is_instance_valid(control) and is_instance_valid(control.theme):
+			control.theme.default_font = theme_font
+## Found in Preferences. The index of the font used by the interface.
+var theme_font_index := 1:
+	set(value):
+		theme_font_index = value
+		if theme_font_index < loaded_fonts.size():
+			theme_font = loaded_fonts[theme_font_index]
+		else:
+			var available_font_names := get_available_font_names()
+			if theme_font_index < available_font_names.size():
+				var font_name := available_font_names[theme_font_index]
+				theme_font = find_font_from_name(font_name)
+			else:
+				theme_font = loaded_fonts[1]  # Fall back to Roboto if out of bounds
 ## Found in Preferences. The font size used by the interface.
 var font_size := 16
 ## Found in Preferences. If [code]true[/code], the interface dims on popups.
@@ -277,6 +296,7 @@ var tool_button_size := ButtonSize.SMALL:
 			return
 		tool_button_size = value
 		Tools.set_button_size(tool_button_size)
+## Found in Preferences.
 var share_options_between_tools := false:
 	set(value):
 		share_options_between_tools = value
@@ -751,7 +771,7 @@ func _initialize_keychain() -> void:
 		&"palettize": Keychain.InputAction.new("", "Effects menu", true),
 		&"pixelize": Keychain.InputAction.new("", "Effects menu", true),
 		&"posterize": Keychain.InputAction.new("", "Effects menu", true),
-		&"centre_canvas": Keychain.InputAction.new("", "View menu", true),
+		&"center_canvas": Keychain.InputAction.new("", "View menu", true),
 		&"mirror_view": Keychain.InputAction.new("", "View menu", true),
 		&"show_grid": Keychain.InputAction.new("", "View menu", true),
 		&"show_pixel_grid": Keychain.InputAction.new("", "View menu", true),
