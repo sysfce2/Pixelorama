@@ -1101,6 +1101,11 @@ pointing/android/enable_pan_and_scale_gestures=true
 
 locale/translations=PackedStringArray("res://Translations/en_US.po")
 
+[navigation]
+
+2d/navigation_engine="Dummy"
+3d/navigation_engine="Dummy"
+
 [physics]
 
 2d/physics_engine="Dummy"
